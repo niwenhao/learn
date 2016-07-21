@@ -1,8 +1,11 @@
 # Scalaのタイプ：
 
-* String    "aaaaaa"  """ aaaa
-                          bbb
-                          ccc"""
+* String    
+
+		"aaaaaa"
+		""" aaaa
+            bbb
+            ccc"""
 * Byte
 * Short
 * Int
@@ -64,6 +67,7 @@
 
 * 一般
 
+        def welcome(name: String) :String = {"Exciting times ahead" + name }
         def max(a: Int, b: Int) = if(a > b) a else b
         def toList[A](value:A) = List(value)
         
