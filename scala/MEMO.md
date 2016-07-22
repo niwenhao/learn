@@ -78,7 +78,72 @@
         evenNumbers.foldLeft(0) { (a, b) => a + b }
         evenNumbers.foldLeft(0) { _ + _ }
         val hasUpperCase = name.exists(_.isUpper)
+
+* 高階関数
+
+        def xxx(op : (Int, Int) => Int) : (Int) => Int = (a) => op(a, a)
+        val x = xxx((a, b) => a+b)
+        val y = x(10)
+
+* List/Array
+
+        var arr = Array[Int](1, 2, 3)
+        var lst = List[Int](1, 2, 3)
         
-        
+        lst.foreach(println _)
+
+        scala> val a = List(10)
+        a: List[Int] = List(10)
+
+        scala> val b = 1 :: a
+        b: List[Int] = List(1, 10)
+
+        scala> val c = b :+ 100
+        c: List[Int] = List(1, 10, 100)
+
+        scala> val d = "This" :: "is" :: "immutable" :: Nil
+        d: List[String] = List(This, is, immutable)
+
+        scala>
+
+
+* Control
+
+  * if
+
+            scala> val useDefault = false
+            useDefault: Boolean = false
+
+            scala> val configFile = if(useDefault) "custom.txt" else "default.txt"
+            configFile: String = default.txt
+
+            scala>
+
+  * for
+    
+    format1
+
+            scala> for(f <- files) { println(f) }
+            ./.sudo_as_admin_successful
+            ./.vimrc
+            ./.npm
+            ./.activator
+
+    format2
+
+            scala> a
+            res23: List[Int] = List(1, 2)
+            scala> b
+            res24: List[Int] = List(3, 4)
+            scala> for { x <- a; y <- b } println(x + y)
+            4
+            5
+            5
+            6
+            scala> for { x <- a; y <- b } yield x + y
+            res27: List[Int] = List(4, 5, 5, 6)
+            scala>
+
+
 
 
