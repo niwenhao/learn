@@ -221,3 +221,19 @@
             res43: String = less then 1000 => 100
             res44: String = Unlimited => 1000
 
+  * Exception
+        
+           cala> :load test.scala
+           Loading test.scala...
+           func: Long => String = <function1>
+           res41: String = less then 10 => 1
+           res42: String = less then 100 => 10
+           res43: String = less then 1000 => 100
+           res44: String = Unlimited => 1000
+
+           scala> :load test.scala
+           Loading test.scala...
+           func: (Long, Long) => String = <function2>
+           res57: String = result => 10
+           res58: String = Unknown Exception : java.lang.ArithmeticException: / by zero
+
