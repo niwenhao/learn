@@ -144,6 +144,80 @@
             res27: List[Int] = List(4, 5, 5, 6)
             scala>
 
+  * match case
 
+    case 1
+            
+            scala> var func : (Long) => String = (a) => a match {
+                 |                 case 1L => "One"
+                 |                 case 2L => "Two"
+                 |                 case _ => "Others"
+                 |             }
+            func: Long => String = <function1>
 
+            scala> func(10L)
+            res0: String = Others
+
+            scala> func(1L)
+            res1: String = One
+
+    case 2
+
+            val func = (a : AnyRef) => a match {
+                case s : String => s"String : $s"
+                case l : List[_] => s"List ....."
+                case a : Array[_] => s"Array ....."
+                case d : java.util.Date => s"Date ....."
+                case _ => "Unknown"
+            }
+
+            func("abc")
+            func(List(1, 2, 2))
+            func(new java.util.Date())
+
+    case 3
+        
+            val func = (a : AnyRef) => a match {
+                case f :: s :: rest => List(List(f, s), rest)
+                case _ => "Unknown"
+            }
+            
+            func("abc")
+            func(List())
+            func(List(1))
+            func(List(1, 2))
+            func(List(1, 2, 3))
+            func(List(1, 2, 3, 4))
+
+            scala> :load test.scala
+            Loading test.scala...
+            func: AnyRef => java.io.Serializable = <function1>
+            res19: java.io.Serializable = Unknown
+            res20: java.io.Serializable = Unknown
+            res21: java.io.Serializable = Unknown
+            res22: java.io.Serializable = List(List(1, 2), List())
+            res23: java.io.Serializable = List(List(1, 2), List(3))
+            res24: java.io.Serializable = List(List(1, 2), List(3, 4))
+
+    case 4
+
+            val func = (v : Long) => v match {
+                case l if l < 10 => s"less then 10 => $l"
+                case l if l < 100 => s"less then 100 => $l"
+                case l if l < 1000 => s"less then 1000 => $l"
+                case l => s"Unlimited => $l"
+            }
+            
+            func(1)
+            func(10)
+            func(100)
+            func(1000)
+
+            scala> :load test.scala
+            Loading test.scala...
+            func: Long => String = <function1>
+            res41: String = less then 10 => 1
+            res42: String = less then 100 => 10
+            res43: String = less then 1000 => 100
+            res44: String = Unlimited => 1000
 
