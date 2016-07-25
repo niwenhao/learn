@@ -1,9 +1,11 @@
-# Scalaのタイプ：
+# Basic
+
+## Scalaのタイプ：
 
 * String    
 
-		"aaaaaa"
-		""" aaaa
+        "aaaaaa"
+        """ aaaa
             bbb
             ccc"""
 * Byte
@@ -51,7 +53,7 @@
         <date>Fri Feb 19 19:18:08 EST 2010</date>
         </alert>
         
-# 変数
+## 変数
 
 * Lazy
     
@@ -63,7 +65,7 @@
         second: Int = 2
         rest: List[Int] = List(3)
         
-# 関数
+## 関数
 
 * 一般
 
@@ -85,7 +87,7 @@
         val x = xxx((a, b) => a+b)
         val y = x(10)
 
-* List/Array
+## List/Array
 
         var arr = Array[Int](1, 2, 3)
         var lst = List[Int](1, 2, 3)
@@ -107,7 +109,7 @@
         scala>
 
 
-* Control
+## Control
 
   * if
 
@@ -236,4 +238,169 @@
            func: (Long, Long) => String = <function2>
            res57: String = result => 10
            res58: String = Unknown Exception : java.lang.ArithmeticException: / by zero
+
+# OOP
+
+##  クラス
+
+* Normal
+
+        class TestClass(val field1 : String, val field2 : String)
+
+        val t = new TestClass("abc", "123")
+        t.field1
+        t.field2
+
+        scala> :load test.scala
+        Loading test.scala...
+        defined class TestClass
+        t: TestClass = TestClass@69eb9518
+        res0: String = abc
+        res1: String = 123
+
+* property method
+
+        class TestClass(private val field1 : String, private val field2 : String) {
+                def f1 = field1
+                def f2 = field2
+        }
+
+        val t = new TestClass("abc", "123")
+        t.f1
+        t.f2
+
+        scala> :load test.scala
+        Loading test.scala...
+        defined class TestClass
+        t: TestClass = TestClass@42c87005
+        res2: String = abc
+        res3: String = 123
+
+* constractor
+
+        class TestClass(val field1 : String, val field2 : String) {
+            def this() = this("abc", "123")
+        }
+
+        val t = new TestClass()
+        t.field1
+        t.field2
+
+        val t = new TestClass("def", "456")
+        t.field1
+        t.field2
+
+        scala> :load test.scala
+        Loading test.scala...
+        defined class TestClass
+        t: TestClass = TestClass@24674be7
+        res4: String = abc
+        res5: String = 123
+        t: TestClass = TestClass@1db3ff02
+        res6: String = def
+        res7: String = 456
+
+* setter and getter
+
+        class TestClass(private var field1 : String) {
+                def f1 = field1
+                def f1_= (v : String) = field1 = v
+        }
+
+        val t = new TestClass("abc")
+        t.f1
+        t.f1 = "def"
+        t.f1
+
+        scala> :load test.scala
+        Loading test.scala...
+        defined class TestClass
+        t: TestClass = TestClass@28c11a3c
+        res18: String = abc
+        t.f1: String = def
+        res19: String = def
+
+* package
+
+        package per {
+            package nwh {
+                class MyClass(val name : String, val age : Int)
+            }
+        }
+
+        package per.nwh {
+                class MyClass(val name : String, val age : Int)
+        }
+
+        package per.nwh
+
+        class MyClass(val name : String, val age : Int)
+
+* import
+
+        import xxx.yyy._
+
+        {
+            import xxx.yyy._
+        }
+
+        scala> {
+             | import System._
+             | out.println("aaa")
+             | }
+        aaa
+
+        scala> out.println("aaa")
+        <console>:8: error: not found: value out
+                      out.println("aaa")
+                      ^
+
+        scala>
+
+        scala> import java.util.Date
+        import java.util.Date
+
+        scala> import java.util.{Date => SqlDate}
+        import java.util.{Date=>SqlDate}
+
+* singltone object
+
+        object testObj {
+            def apply(s : String) = s + s
+        }
+
+        testObj("abc")
+
+        scala> :load test.scala
+        Loading test.scala...
+        defined object testObj
+        res6: String = abcabc
+
+* package object
+
+        :test.scala
+        package object ppp {
+            def outpkg(s : String) = "ppp => " + s
+        }
+
+        package ppp {
+            class TestClass(val name: String, val msg :String) {
+                def this(n : String) = this(n, outpkg(n))
+            }
+        }
+
+        dev@research:~/public_html/learn/scala$ scalac test.scala
+        dev@research:~/public_html/learn/scala$ scala
+        Welcome to Scala version 2.11.6 (OpenJDK 64-Bit Server VM, Java 1.7.0_101).
+        Type in expressions to have them evaluated.
+        Type :help for more information.
+
+        scala> import ppp._
+        import ppp._
+
+        scala> val t = new TestClass("my name")
+        t: ppp.TestClass = ppp.TestClass@695d20e0
+
+        scala> t.msg
+        res0: String = ppp => my name
 
