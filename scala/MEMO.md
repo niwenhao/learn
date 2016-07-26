@@ -320,6 +320,16 @@
         t.f1: String = def
         res19: String = def
 
+  private attribute
+
+        import java.util.{Date => Dt}
+
+        object ooo {
+            private var _time : Dt = new Dt()
+            def time = _time
+            def time_= (t : Dt) = _time = t
+        }
+
 * package
 
         package per {
@@ -403,4 +413,61 @@
 
         scala> t.msg
         res0: String = ppp => my name
+
+* Mixin
+
+        import com.mongodb.{DBCollection => MongoDBCollection }
+        import com.mongodb.DBObject
+        trait ReadOnly {
+            val underlying: MongoDBCollection
+            def name = underlying getName
+            def fullName = underlying getFullName
+            def find(doc: DBObject) = underlying find doc
+            def findOne(doc: DBObject) = underlying findOne doc
+            def findOne = underlying findOne
+            def getCount(doc: DBObject) = underlying getCount doc
+        }
+
+        def administrableCollection(name: String) = new DBCollection(collection(name)) with Administrable with Memoizer
+
+* caseクラスの本質
+
+  * Scala prefixes all the parameters with val, and that will make them public value.
+    But remember that you still never access the value directly; you always access
+    through accessors.
+
+  * Both equals and hashCode are implemented for you based on the given
+    parameters.
+
+  * The compiler implements the toString method that returns the class name
+    and its parameters.
+
+  * Every case class has a method named copy that allows you to easily create a modified
+    copy of the class’s instance. You’ll learn about this later in this chapter.
+
+  * A companion object is created with the appropriate apply method, which takes
+    the same arguments as declared in the class.
+
+  * The compiler adds a method called unapply, which allows the class name to be
+    used as an extractor for pattern matching (more on this later).
+
+  * A default implementation is provided for serialization
+
+  example
+
+        scala> case class Person(firstName : String, lastName : String)
+        defined class Person
+
+        scala> val people = List(
+             |   Person("A", "a"),
+             |   Person("B", "b"),
+             |   Person("C", "c")
+             | )
+        people: List[Person] = List(Person(A,a), Person(B,b), Person(C,c))
+
+        scala> for(Person(fn, ln) <- people) yield fn + "," + ln
+        res0: List[String] = List(A,a, B,b, C,c)
+
+
+
 
