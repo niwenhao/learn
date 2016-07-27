@@ -2,22 +2,22 @@
 
 ## Scalaのタイプ：
 
-* String    
+*   String    
 
         "aaaaaa"
         """ aaaa
             bbb
             ccc"""
-* Byte
-* Short
-* Int
-* Long     32L, 0x20L
-* Float    100F, 1e2f
-* Double   100d, 1e2D
-* Boolean
-* Char      '\102', 'B'
+*     Byte
+*   Short
+*   Int
+*   Long     32L, 0x20L
+*   Float    100F, 1e2f
+*   Double   100d, 1e2D
+*   Boolean
+*   Char      '\102', 'B'
 
-* String interpolation
+*   String interpolation
         
         scala> val k = "abc"
         k: String = abc
@@ -37,7 +37,7 @@
         scala> f"$k%s is $v%4.5f to $w%4.6f"
         res12: String = abc is 1.90000 to 2.600000
 
-* XML
+*   XML
 
         scala> val message = "I didn't know xml could be so much fun"
         scala> val code = “1”
@@ -55,10 +55,10 @@
         
 ## 変数
 
-* Lazy
+*   Lazy
     
         lazy val forLater = someTimeConsumingOperation()
-* List
+*   List
         
         scala> val first :: second :: rest = List(1, 2, 3)
         first: Int = 1
@@ -67,13 +67,13 @@
         
 ## 関数
 
-* 一般
+*   一般
 
         def welcome(name: String) :String = {"Exciting times ahead" + name }
         def max(a: Int, b: Int) = if(a > b) a else b
         def toList[A](value:A) = List(value)
         
-* closure
+*   closure
 
         val evenNumbers = List(2, 4, 6, 8, 10)
         evenNumbers.foldLeft(0) { (a: Int, b:Int) => a + b }
@@ -81,7 +81,7 @@
         evenNumbers.foldLeft(0) { _ + _ }
         val hasUpperCase = name.exists(_.isUpper)
 
-* 高階関数
+*   高階関数
 
         def xxx(op : (Int, Int) => Int) : (Int) => Int = (a) => op(a, a)
         val x = xxx((a, b) => a+b)
@@ -111,7 +111,7 @@
 
 ## Control
 
-  * if
+*   if
 
             scala> val useDefault = false
             useDefault: Boolean = false
@@ -121,14 +121,14 @@
 
             scala>
 
-  * for
+*   for
     
     format1
 
             scala> for(f <- files) { println(f) }
             ./.sudo_as_admin_successful
             ./.vimrc
-            ./.npm
+                ./.npm
             ./.activator
 
     format2
@@ -146,9 +146,9 @@
             res27: List[Int] = List(4, 5, 5, 6)
             scala>
 
-  * match case
+*   match case
 
-    case 1
+    *   case 1
             
             scala> var func : (Long) => String = (a) => a match {
                  |                 case 1L => "One"
@@ -163,7 +163,7 @@
             scala> func(1L)
             res1: String = One
 
-    case 2
+    *   case 2
 
             val func = (a : AnyRef) => a match {
                 case s : String => s"String : $s"
@@ -177,7 +177,7 @@
             func(List(1, 2, 2))
             func(new java.util.Date())
 
-    case 3
+    *   case 3
         
             val func = (a : AnyRef) => a match {
                 case f :: s :: rest => List(List(f, s), rest)
@@ -201,7 +201,7 @@
             res23: java.io.Serializable = List(List(1, 2), List(3))
             res24: java.io.Serializable = List(List(1, 2), List(3, 4))
 
-    case 4
+    *   case 4
 
             val func = (v : Long) => v match {
                 case l if l < 10 => s"less then 10 => $l"
@@ -223,27 +223,27 @@
             res43: String = less then 1000 => 100
             res44: String = Unlimited => 1000
 
-  * Exception
-        
-           cala> :load test.scala
-           Loading test.scala...
-           func: Long => String = <function1>
-           res41: String = less then 10 => 1
-           res42: String = less then 100 => 10
-           res43: String = less then 1000 => 100
-           res44: String = Unlimited => 1000
+*   Exception
+    
+        cala> :load test.scala
+        Loading test.scala...
+        func: Long => String = <function1>
+        res41: String = less then 10 => 1
+        res42: String = less then 100 => 10
+        res43: String = less then 1000 => 100
+        res44: String = Unlimited => 1000
 
-           scala> :load test.scala
-           Loading test.scala...
-           func: (Long, Long) => String = <function2>
-           res57: String = result => 10
-           res58: String = Unknown Exception : java.lang.ArithmeticException: / by zero
+        scala> :load test.scala
+        Loading test.scala...
+        func: (Long, Long) => String = <function2>
+        res57: String = result => 10
+        res58: String = Unknown Exception : java.lang.ArithmeticException: / by zero
 
 # OOP
 
 ##  クラス
 
-* Normal
+*   Normal
 
         class TestClass(val field1 : String, val field2 : String)
 
@@ -258,7 +258,7 @@
         res0: String = abc
         res1: String = 123
 
-* property method
+*   property method
 
         class TestClass(private val field1 : String, private val field2 : String) {
                 def f1 = field1
@@ -276,7 +276,7 @@
         res2: String = abc
         res3: String = 123
 
-* constractor
+*   constractor
 
         class TestClass(val field1 : String, val field2 : String) {
             def this() = this("abc", "123")
@@ -300,7 +300,7 @@
         res6: String = def
         res7: String = 456
 
-* setter and getter
+*   setter and getter
 
         class TestClass(private var field1 : String) {
                 def f1 = field1
@@ -330,7 +330,7 @@
             def time_= (t : Dt) = _time = t
         }
 
-* package
+*   package
 
         package per {
             package nwh {
@@ -346,7 +346,7 @@
 
         class MyClass(val name : String, val age : Int)
 
-* import
+*   import
 
         import xxx.yyy._
 
@@ -373,7 +373,7 @@
         scala> import java.util.{Date => SqlDate}
         import java.util.{Date=>SqlDate}
 
-* singltone object
+*   singltone object
 
         object testObj {
             def apply(s : String) = s + s
@@ -386,7 +386,7 @@
         defined object testObj
         res6: String = abcabc
 
-* package object
+*   package object
 
         :test.scala
         package object ppp {
@@ -414,7 +414,7 @@
         scala> t.msg
         res0: String = ppp => my name
 
-* Mixin
+*   Mixin
 
         import com.mongodb.{DBCollection => MongoDBCollection }
         import com.mongodb.DBObject
@@ -430,30 +430,28 @@
 
         def administrableCollection(name: String) = new DBCollection(collection(name)) with Administrable with Memoizer
 
-* caseクラスの本質
+*   caseクラスの本質
 
-  * Scala prefixes all the parameters with val, and that will make them public value.
-    But remember that you still never access the value directly; you always access
-    through accessors.
+    *   Scala prefixes all the parameters with val, and that will make them public value.
+        But remember that you still never access the value directly; you always access
+        through accessors.
 
-  * Both equals and hashCode are implemented for you based on the given
-    parameters.
+    *   Both equals and hashCode are implemented for you based on the given parameters.
 
-  * The compiler implements the toString method that returns the class name
-    and its parameters.
+    *   The compiler implements the toString method that returns the class name and its parameters.
 
-  * Every case class has a method named copy that allows you to easily create a modified
-    copy of the class’s instance. You’ll learn about this later in this chapter.
+    *   Every case class has a method named copy that allows you to easily create a modified copy of 
+        the class’s instance. You’ll learn about this later in this chapter.
 
-  * A companion object is created with the appropriate apply method, which takes
-    the same arguments as declared in the class.
+    *   A companion object is created with the appropriate apply method, which takes the same arguments
+        as declared in the class.
 
-  * The compiler adds a method called unapply, which allows the class name to be
-    used as an extractor for pattern matching (more on this later).
+    *   The compiler adds a method called unapply, which allows the class name to be used as an 
+    extractor for pattern matching (more on this later).
 
-  * A default implementation is provided for serialization
+    *   A default implementation is provided for serialization
 
-  example
+    example
 
         scala> case class Person(firstName : String, lastName : String)
         defined class Person
@@ -468,6 +466,83 @@
         scala> for(Person(fn, ln) <- people) yield fn + "," + ln
         res0: List[String] = List(A,a, B,b, C,c)
 
+*   modifiers
 
+        package outerpkg {
+            package innerpkg {
 
+                class Outer {
+                    class Inner {
+                        private def e() = "This is e"
+                        private[Outer] def f() = "This is f"
+                        private[innerpkg] def g() = "This is g"
+                        private[outerpkg] def h() = "This is h"
 
+                        def ee() = e()
+                    }
+
+                    def ff() = (new Inner()).f()
+                }
+
+                object gg { 
+                    def gg() = {
+                        val o = new Outer()
+                        val i = new o.Inner()
+                        i.g()
+                    }
+                }
+            }
+            object hh {
+                def hh() = {
+                    val o = new innerpkg.Outer()
+                    val i = new o.Inner()
+                    i.h()
+                }
+            }
+        }
+
+*   val class(AnyVal)
+
+    *   目的
+
+        Flyweightパターン
+
+    *   制約
+        *   The class must have exactly one val parameter (vars are not allowed).
+        *   The parameter type may not be a value class.
+        *   The class can not have any auxiliary constructors.
+        *   The class can only have def members, no vals or vars.
+        *   The class cannot extend any traits, only universal traits (we will see them shortly).
+
+*   implicit
+
+        case class ListMaker(val left:Int) {
+            import scala.collection.mutable.MutableList
+
+            def -->(right: Int) = {
+                println(s"${left} --> ${right}")
+                val list = MutableList[Int]()
+                for(i <- left to right) {
+                    list += i
+                }
+                println(list)
+                list.toList
+            }
+        }
+
+        implicit def int2ListMaker(i:Int):ListMaker = ListMaker(i)
+
+        1 --> 10
+
+        scala> :load test.scala
+        Loading test.scala...
+        defined class ListMaker
+        warning: there was one feature warning; re-run with -feature for details
+        int2ListMaker: (i: Int)ListMaker
+        1 --> 10
+        MutableList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        res66: List[Int] = List(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+
+# Functions
+
+## 
