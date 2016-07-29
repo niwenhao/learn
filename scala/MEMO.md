@@ -71,6 +71,7 @@
 
         def welcome(name: String) :String = {"Exciting times ahead" + name }
         def max(a: Int, b: Int) = if(a > b) a else b
+        def max : (Int, Int) => Int = (a, b) => if(a > b) a else b
         def toList[A](value:A) = List(value)
         
 *   closure
@@ -545,4 +546,34 @@
 
 # Functions
 
-## 
+## Higher Order
+
+    scala> object Add10 {
+         | def apply(f:Double => Double) : Double => Double = (p) => 10 + f(p)
+         | }
+    defined object Add10
+
+    scala> object Add100 {
+         | def apply(f:Double => Double) : Double => Double = (p) => 100 + f(p)
+         | }
+    defined object Add100
+
+    scala> object Add1000 {
+         | def apply(f:Double => Double) : Double => Double = (p) => 1000 + f(p)
+         | }
+    defined object Add1000
+
+    scala> var f = Add10(x => x)
+    f: Double => Double = <function1>
+
+    scala> f = Add100(f)
+    f: Double => Double = <function1>
+
+    scala> f = Add1000(f)
+    f: Double => Double = <function1>
+
+    scala> f = Add100(f)
+    f: Double => Double = <function1>
+
+    scala> f(1)
+    res3: Double = 1211.0
