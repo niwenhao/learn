@@ -587,4 +587,44 @@
 
 *   しかし、なんでプロシジャー向けが一瞬（１０数年）で、オブジェクト指向が台頭になる？
 
-    その答え、
+    その答え、High orderだ、コードの再利用をやりやすいため、下記のパターンになる。
+
+        func1(i1, i2, i3, i4, i5) = {
+            func11(i1, i2, i3) {
+                func111(i1, i2)
+            }
+            func12(i3, i4, i5)
+        }
+
+    プログラムを再利用のため、すべての可能のINPUTをmain funcに渡し、さらに子プログラムなども...
+    もし、入力は数十個の場合、耐え切れない。
+
+    例：
+        
+        pickGavenName(s) = {
+            pickPartString(s, / +/, 0)
+        }
+
+        pickPartString(s, ptn, idx) = {
+            arr = split(s, ptn)
+            arr[idx]
+        }
+
+    この例が簡単だが、しかし、複雑なシステムでこのような抽出は難しいでしょう。
+
+    OOPの場合、再利用関数の抽出は耐えられないから、必要機能分析でRoleをつかって、単純化する。
+    Classの継承で機能を拡張する。Interfaceでプロトコールを決める。
+
+*   Functional Programingになると
+
+    *   簡単に目が見えるレベルのInputとOutputがすぐわかる。(Input) => Outputをもらえるなら、すべてOK
+
+    *   プログラムの中心は(Input) => Outputを構築する。
+
+    *   Genericを利用し、コードの柔軟性を保つ。
+
+    *   Pipeを利用し、command chainを実装する。
+
+
+これから、Manning Functionalを読む
+
