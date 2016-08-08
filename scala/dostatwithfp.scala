@@ -20,4 +20,4 @@ p1("/")
 p2("/")
 
 val p = pipe(makeProcessor("^\\w".r, makeSelectProcessor),
-                makeProcessor(2, makeCharCount)
+                makeProcessor(2, makeCharCount))
